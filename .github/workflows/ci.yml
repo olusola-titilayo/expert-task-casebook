@@ -1,0 +1,29 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pytest
+      - run: pytest -q
+  scorer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: git clone --depth 1 https://github.com/olusola-titilayo/llm-rubric-scorer.git scorer
+      - run: cd scorer && npm ci && npm run build
+      - name: Reference answers pass and trap answers fail
+        run: |
+          for task in tasks/*/; do
+            node scorer/dist/src/cli.js "$task/rubric.json" "$task/reference_answer.md"
+            if node scorer/dist/src/cli.js "$task/rubric.json" "$task/trap_answer.md"; then
+              echo "::error::$task trap answer passed its rubric"; exit 1
+            fi
+          done

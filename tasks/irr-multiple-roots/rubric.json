@@ -1,0 +1,68 @@
+{
+  "name": "Two IRRs on one project",
+  "passThreshold": 0.7,
+  "criteria": [
+    {
+      "id": "both-roots",
+      "description": "Identifies both IRRs, 10% and 20%",
+      "weight": 5,
+      "check": {
+        "kind": "allOf",
+        "checks": [
+          {
+            "kind": "regex",
+            "pattern": "\\b10\\s?%",
+            "flags": "i"
+          },
+          {
+            "kind": "regex",
+            "pattern": "\\b20\\s?%",
+            "flags": "i"
+          }
+        ]
+      },
+      "required": true
+    },
+    {
+      "id": "accept",
+      "description": "Concludes that the project clears the hurdle by NPV",
+      "weight": 4,
+      "check": {
+        "kind": "regex",
+        "pattern": "npv[^.\\n]{0,60}\\+?\\$?0\\.1[23]",
+        "flags": "i"
+      },
+      "required": true
+    },
+    {
+      "id": "explains",
+      "description": "Explains that the sign changes cause multiple IRRs",
+      "weight": 3,
+      "check": {
+        "kind": "regex",
+        "pattern": "sign",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "mirr",
+      "description": "Gives a valid cross-check such as MIRR of about 12.03%",
+      "weight": 1,
+      "check": {
+        "kind": "regex",
+        "pattern": "12\\.03",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "agrees-analyst",
+      "description": "Agent agrees that the analyst is correct",
+      "weight": -5,
+      "check": {
+        "kind": "regex",
+        "pattern": "analyst is (correct|right)",
+        "flags": "i"
+      }
+    }
+  ]
+}

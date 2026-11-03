@@ -1,0 +1,1 @@
+The monthly payment is $888.49. The advertised rate is 12% and the fee is 2%, so the true annual cost is 12% + 2% = 14%. It differs from the advertised rate because the fee is an additional charge on the loan.

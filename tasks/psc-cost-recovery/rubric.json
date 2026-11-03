@@ -1,0 +1,80 @@
+{
+  "name": "Production sharing contract cash flow",
+  "passThreshold": 0.7,
+  "criteria": [
+    {
+      "id": "contractor",
+      "description": "States that the contractor's net cash flow is -6.9",
+      "weight": 5,
+      "check": {
+        "kind": "regex",
+        "pattern": "(-|\u2212|loses |loss of )\\s?6\\.9",
+        "flags": "i"
+      },
+      "required": true
+    },
+    {
+      "id": "government",
+      "description": "States a government take of 136.9",
+      "weight": 4,
+      "check": {
+        "kind": "regex",
+        "pattern": "136\\.9",
+        "flags": "i"
+      },
+      "required": true
+    },
+    {
+      "id": "unrecovered",
+      "description": "Identifies 73.5 of costs unrecovered at the end",
+      "weight": 3,
+      "check": {
+        "kind": "regex",
+        "pattern": "73\\.5",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "yearly",
+      "description": "Shows the year-by-year cost oil of 45, 67.5 and 54",
+      "weight": 2,
+      "check": {
+        "kind": "allOf",
+        "checks": [
+          {
+            "kind": "includes",
+            "text": "45.0"
+          },
+          {
+            "kind": "includes",
+            "text": "67.5"
+          },
+          {
+            "kind": "includes",
+            "text": "54.0"
+          }
+        ]
+      }
+    },
+    {
+      "id": "action",
+      "description": "Gives a commercial implication such as renegotiating the cap or term",
+      "weight": 1,
+      "check": {
+        "kind": "regex",
+        "pattern": "negotiat|longer term",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "ignores-cap",
+      "description": "Agent assumes all costs are recovered",
+      "weight": -5,
+      "check": {
+        "kind": "regex",
+        "pattern": "recovers all",
+        "flags": "i"
+      }
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "name": "Mixing real and nominal cash flows",
+  "passThreshold": 0.7,
+  "criteria": [
+    {
+      "id": "total",
+      "description": "States a total PV of about $334.06",
+      "weight": 5,
+      "check": {
+        "kind": "regex",
+        "pattern": "334\\.0[56]",
+        "flags": "i"
+      },
+      "required": true
+    },
+    {
+      "id": "real-rate",
+      "description": "Derives the real rate of 7% with the Fisher relation",
+      "weight": 3,
+      "check": {
+        "kind": "regex",
+        "pattern": "7(\\.00)?\\s?%",
+        "flags": "i"
+      },
+      "required": true
+    },
+    {
+      "id": "operating",
+      "description": "Values the operating flows at about $262.43",
+      "weight": 2,
+      "check": {
+        "kind": "regex",
+        "pattern": "262\\.43",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "shield",
+      "description": "Values the tax shield at about $71.62",
+      "weight": 2,
+      "check": {
+        "kind": "regex",
+        "pattern": "71\\.62",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "approx-fisher",
+      "description": "Agent uses the shortcut 12.35 - 5 = 7.35%",
+      "weight": -3,
+      "check": {
+        "kind": "regex",
+        "pattern": "7\\.35",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "one-rate",
+      "description": "Agent discounts the combined $130 at a single rate",
+      "weight": -4,
+      "check": {
+        "kind": "regex",
+        "pattern": "310\\.3",
+        "flags": "i"
+      }
+    }
+  ]
+}

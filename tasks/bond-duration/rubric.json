@@ -1,0 +1,68 @@
+{
+  "name": "Bond price sensitivity",
+  "passThreshold": 0.7,
+  "criteria": [
+    {
+      "id": "exact",
+      "description": "States an exact change of about -4.15%",
+      "weight": 4,
+      "check": {
+        "kind": "regex",
+        "pattern": "4\\.15",
+        "flags": "i"
+      },
+      "required": true
+    },
+    {
+      "id": "modified",
+      "description": "Uses modified duration of about 4.26",
+      "weight": 4,
+      "check": {
+        "kind": "regex",
+        "pattern": "modified[^\\n]{0,40}4\\.26",
+        "flags": "i"
+      },
+      "required": true
+    },
+    {
+      "id": "duration-est",
+      "description": "Gives the duration-only estimate of -4.26%",
+      "weight": 2,
+      "check": {
+        "kind": "regex",
+        "pattern": "4\\.26\\s?%",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "convexity",
+      "description": "Includes convexity of about 23.44",
+      "weight": 3,
+      "check": {
+        "kind": "regex",
+        "pattern": "23\\.44",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "par-check",
+      "description": "Notices the bond reprices to par at a 6% yield",
+      "weight": 1,
+      "check": {
+        "kind": "regex",
+        "pattern": "coupon equals the yield|price is 100|at par",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "macaulay-as-sensitivity",
+      "description": "Agent uses Macaulay duration directly as the price change",
+      "weight": -4,
+      "check": {
+        "kind": "regex",
+        "pattern": "4\\.48\\s?%",
+        "flags": "i"
+      }
+    }
+  ]
+}

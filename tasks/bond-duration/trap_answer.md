@@ -1,0 +1,1 @@
+Macaulay duration of this bond is 4.48 years. A 1% rise in yields means the price falls by 4.48 x 1% = 4.48%. Duration gives an accurate measure of price risk, so no further adjustment is needed. The bond's new price is about 99.66.

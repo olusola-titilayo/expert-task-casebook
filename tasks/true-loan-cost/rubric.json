@@ -1,0 +1,58 @@
+{
+  "name": "True cost of a loan with a fee",
+  "passThreshold": 0.7,
+  "criteria": [
+    {
+      "id": "payment",
+      "description": "States a payment of about $888.49",
+      "weight": 3,
+      "check": {
+        "kind": "regex",
+        "pattern": "888\\.49",
+        "flags": "i"
+      },
+      "required": true
+    },
+    {
+      "id": "apr",
+      "description": "States an APR of about 15.85%",
+      "weight": 5,
+      "check": {
+        "kind": "regex",
+        "pattern": "15\\.85",
+        "flags": "i"
+      },
+      "required": true
+    },
+    {
+      "id": "effective",
+      "description": "States an effective annual rate of about 17.06%",
+      "weight": 2,
+      "check": {
+        "kind": "regex",
+        "pattern": "17\\.06",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "net-proceeds",
+      "description": "Uses the net $9,800 actually received",
+      "weight": 3,
+      "check": {
+        "kind": "regex",
+        "pattern": "9,?800",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "adds-fee",
+      "description": "Agent simply adds the fee to the rate to get 14%",
+      "weight": -5,
+      "check": {
+        "kind": "regex",
+        "pattern": "\\b14(\\.0+)?\\s?%",
+        "flags": "i"
+      }
+    }
+  ]
+}

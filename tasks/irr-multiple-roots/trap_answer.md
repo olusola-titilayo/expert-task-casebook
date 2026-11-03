@@ -1,0 +1,1 @@
+The analyst is correct. The IRR of 10% is below the 12% hurdle rate, so the project destroys value and should be rejected. IRR is the rate at which NPV is zero, and a project should only go ahead if its IRR exceeds the cost of capital.

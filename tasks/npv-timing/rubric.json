@@ -1,0 +1,58 @@
+{
+  "name": "NPV timing convention",
+  "passThreshold": 0.7,
+  "criteria": [
+    {
+      "id": "mid-year-value",
+      "description": "States an NPV of about $329.83",
+      "weight": 5,
+      "check": {
+        "kind": "regex",
+        "pattern": "329\\.8",
+        "flags": "i"
+      },
+      "required": true
+    },
+    {
+      "id": "uses-mid-year",
+      "description": "Uses mid-year discounting because cash arrives evenly",
+      "weight": 3,
+      "check": {
+        "kind": "regex",
+        "pattern": "mid-?year",
+        "flags": "i"
+      },
+      "required": true
+    },
+    {
+      "id": "compares",
+      "description": "Gives the year-end figure of about $267.95 for comparison",
+      "weight": 2,
+      "check": {
+        "kind": "regex",
+        "pattern": "267\\.9",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "quantifies-gap",
+      "description": "Quantifies the difference of about $61.89",
+      "weight": 2,
+      "check": {
+        "kind": "regex",
+        "pattern": "61\\.[89]",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "no-dismissal",
+      "description": "Agent says timing doesn't matter",
+      "weight": -3,
+      "check": {
+        "kind": "regex",
+        "pattern": "timing (doesn.t|does not) matter",
+        "flags": "i"
+      }
+    }
+  ]
+}
